@@ -75,8 +75,8 @@ importers:
         specifier: ^3.5.21
         version: 3.5.21(typescript@5.8.3)
       vue-broadcaster:
-        specifier: link:lib
-        version: link:lib
+        specifier: 'link:'
+        version: 'link:'
       vue-tsc:
         specifier: ^3.0.4
         version: 3.0.6(typescript@5.8.3)

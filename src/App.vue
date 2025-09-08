@@ -1,11 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useGlobalBroadcast } from 'vue-broadcaster'
+import DefaultDomain from './components/default-domain/index.vue'
+import GlobalDomain from './components/global-domain/index.vue'
+import CustomDomain from './components/custom-domain/index.vue'
+
+useGlobalBroadcast()
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <DefaultDomain />
+  <GlobalDomain />
+  <CustomDomain />
 </template>
-
-<style scoped></style>

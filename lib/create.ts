@@ -5,25 +5,19 @@ import type { Broadcast, BroadcastReceive } from './types'
 
 const DEFAULT_INJECTION_KEY: InjectionKey<Broadcaster> = Symbol('broadcaster')
 
+/**
+ * 创建广播 Composition API 选项
+ */
 export interface BroadcastCompositionsOptions {
   injectionKey?: InjectionKey<Broadcaster>
 }
 
+/**
+ * 创建广播 Composition API
+ */
 export const createBroadcastCompositions = (options?: BroadcastCompositionsOptions) => {
   const { injectionKey = DEFAULT_INJECTION_KEY } = options || {}
 
-  /**
-   * 广播 Composition API
-   *
-   * 用于向所有子组件和后代组件广播事件
-   *
-   * @example
-   * const { broadcast, receive } = useBroadcast();
-   * broadcast('type', { message: 'hello' });
-   * const off = receive('type', (data) => {
-   *   console.log(data)
-   * })
-   */
   const useBroadcast = (): {
     broadcast: Broadcast
     receive: BroadcastReceive
@@ -65,16 +59,6 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
     return { broadcast, receive }
   }
 
-  /**
-   * 接收广播 Composition API
-   *
-   * 用于监听父级或祖先组件广播的事件
-   *
-   * @example
-   * const off = useReceiveBroadcast('type', (data) => {
-   *   console.log(data)
-   * })
-   */
   const useReceiveBroadcast: BroadcastReceive = (type, handler, options) => {
     const { once = false, excludeSelf = false } = options || {}
 
@@ -102,15 +86,6 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
     return broadcaster.on(type, handler, once, excludeSelf, uid)
   }
 
-  /**
-   * 子组件广播 Composition API
-   *
-   * 用于在子组件和后代组件中发送广播
-   *
-   * @example
-   * const broadcast = useChildBroadcast();
-   * broadcast('type', { message: 'hello' });
-   */
   const useChildBroadcast = (): Broadcast => {
     const instance = getCurrentInstance()
     const uid = instance ? instance.uid : void 0

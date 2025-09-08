@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  padding: 20px;
+}
+
+.component {
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 6px;
+}
+
+.component .component,
+.component+.component {
+  margin-top: 20px;
+}
+
+.component-title {
+  line-height: 1;
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
