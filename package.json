@@ -1,6 +1,6 @@
 {
   "name": "vue-broadcaster",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Vue3 广播组合式 API",
   "author": "xiangheng08",
   "license": "MIT",
