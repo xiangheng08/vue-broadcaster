@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'vue-broadcaster': fileURLToPath(new URL('./lib/main.ts', import.meta.url)),
     },
   },
   build: {

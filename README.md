@@ -214,8 +214,8 @@ git clone https://github.com/xiangheng08/vue-broadcaster.git
 
 cd vue-broadcaster
 pnpm i
+pnpm dev # 启动开发服务
 pnpm build # 构建
-pnpm dev # 启动开发服务之前要先执行 pnpm build
 ```
 
 ## License
