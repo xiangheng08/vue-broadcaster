@@ -1,0 +1,78 @@
+{
+  "name": "vue-broadcast",
+  "version": "0.0.0",
+  "description": "Vue3 广播组合式 API",
+  "author": "xiangheng08",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "vue",
+    "vue3",
+    "broadcast",
+    "composition-api",
+    "vue-composition-api",
+    "广播"
+  ],
+  "homepage": "https://github.com/xiangheng08/vue-broadcast",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiangheng08/vue-broadcast"
+  },
+  "bugs": {
+    "url": "https://github.com/xiangheng08/vue-broadcast/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-broadcast.umd.cjs",
+  "module": "./dist/vue-broadcast.js",
+  "types": "./dist/vue-broadcast.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-broadcast.js",
+      "require": "./dist/vue-broadcast.umd.cjs"
+    }
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src/"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13 <4.0.0"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.52.11",
+    "@tsconfig/node22": "^22.0.2",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.16.5",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/eslint-plugin": "^1.3.4",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-vue": "~10.3.0",
+    "jiti": "^2.4.2",
+    "jsdom": "^26.1.0",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "3.6.2",
+    "typescript": "~5.8.0",
+    "unplugin-dts": "1.0.0-beta.6",
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vitest": "^3.2.4",
+    "vue": "^3.5.21",
+    "vue-broadcast": "link:lib",
+    "vue-tsc": "^3.0.4"
+  }
+}
