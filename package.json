@@ -1,6 +1,6 @@
 {
   "name": "vue-broadcaster",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vue3 广播组合式 API",
   "author": "xiangheng08",
   "license": "MIT",
@@ -13,24 +13,24 @@
     "vue-composition-api",
     "广播"
   ],
-  "homepage": "https://github.com/xiangheng08/vue-broadcast",
+  "homepage": "https://github.com/xiangheng08/vue-broadcaster",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiangheng08/vue-broadcast"
+    "url": "git+https://github.com/xiangheng08/vue-broadcaster"
   },
   "bugs": {
-    "url": "https://github.com/xiangheng08/vue-broadcast/issues"
+    "url": "https://github.com/xiangheng08/vue-broadcaster/issues"
   },
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-broadcast.umd.cjs",
-  "module": "./dist/vue-broadcast.js",
-  "types": "./dist/vue-broadcast.d.ts",
+  "main": "./dist/vue-broadcaster.umd.cjs",
+  "module": "./dist/vue-broadcaster.js",
+  "types": "./dist/vue-broadcaster.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue-broadcast.js",
-      "require": "./dist/vue-broadcast.umd.cjs"
+      "import": "./dist/vue-broadcaster.js",
+      "require": "./dist/vue-broadcaster.umd.cjs"
     }
   },
   "engines": {
@@ -72,7 +72,7 @@
     "vite-plugin-vue-devtools": "^8.0.0",
     "vitest": "^3.2.4",
     "vue": "^3.5.21",
-    "vue-broadcast": "link:lib",
+    "vue-broadcaster": "link:lib",
     "vue-tsc": "^3.0.4"
   }
 }

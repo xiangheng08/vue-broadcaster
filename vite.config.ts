@@ -16,9 +16,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: fileURLToPath(new URL('./lib/main.ts', import.meta.url)),
-      name: 'VueBroadcast',
+      name: 'VueBroadcaster',
       // 将添加适当的扩展名后缀
-      fileName: 'vue-broadcast',
+      fileName: 'vue-broadcaster',
     },
     rollupOptions: {
       // 确保外部化处理那些
