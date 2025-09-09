@@ -139,7 +139,7 @@ broadcast('hello', { name: 'world' })
 
 ```vue
 <script setup>
-import { useGlobalBroadcast } from 'vue-use-broadcast'
+import { useGlobalBroadcast } from 'vue-broadcaster'
 
 const { broadcast, receive } = useGlobalBroadcast()
 
