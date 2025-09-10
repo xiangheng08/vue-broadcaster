@@ -2,6 +2,14 @@
 
 基于 Vue3 `provide/inject` 的广播组合式 API。
 
+中文 | [English](https://github.com/xiangheng08/vue-broadcaster/blob/HEAD/README.en.md)
+
+## 特点
+
+- 体积小巧，除 Vue3 不依赖任何第三方库，构建产物 < 4KB
+- 简单易用，无需复杂配置，即装即用
+- 可自定义 [`InjectionKey`](https://vuejs.org/api/composition-api-dependency-injection.html)
+
 ## 安装
 
 ```bash
