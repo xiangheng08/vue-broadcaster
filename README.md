@@ -75,9 +75,9 @@ Parent.vue
 
 这三个组合式 API 是一组的，需要搭配使用。
 
-- `useBroadcast`：创建一个广播器，可以发出广播，也可以接受广播。_注意：只能域的根组件中使用。_
-- `useReceiveBroadcast`：接受广播。_注意：只能域的在子组件和后代组件中使用。_
-- `useChildBroadcast`：创建一个广播发出器。_注意：只能域的在子组件和后代组件中使用。_
+- `useBroadcast`：创建一个广播器，可以发出广播，也可以接收广播。_注意：只能域的根组件中使用。_
+- `useReceiveBroadcast`：接收广播。_注意：只能域的在子组件和后代组件中使用。_
+- `useChildBroadcast`：接收域中根组件的广播器，并返回一个广播发出器。_注意：只能域的在子组件和后代组件中使用。_
 
 根组件：
 
@@ -91,14 +91,14 @@ broadcast('hello')
 // 携带数据
 broadcast('hello', { name: 'world' })
 
-// 接受广播
+// 接收广播
 const off = receive('hello', (data) => {
   console.log(data)
 
-  // 可调用 off 停止接受广播
+  // 可调用 off 停止接收广播
   off()
 })
-// 只接受一次
+// 只接收一次
 receive('hello', (data) => {}, { once: true })
 // 排除当前组件实例发出的广播
 receive('hello', (data) => {}, { excludeSelf: true })
@@ -109,14 +109,14 @@ receive('hello', (data) => {}, { excludeSelf: true })
 ```ts
 import { useReceiveBroadcast, useChildBroadcast } from 'vue-broadcaster'
 
-// 接受广播
+// 接收广播
 const off = useReceiveBroadcast('hello', (data) => {
   console.log(data)
 
-  // 可调用 off 停止接受广播
+  // 可调用 off 停止接收广播
   off()
 })
-// 只接受一次
+// 只接收一次
 useReceiveBroadcast('hello', (data) => {}, { once: true })
 // 排除当前组件实例发出的广播
 useReceiveBroadcast('hello', (data) => {}, { excludeSelf: true })
@@ -148,14 +148,14 @@ broadcast('hello')
 // 携带数据
 broadcast('hello', { name: 'world' })
 
-// 接受广播
+// 接收广播
 const off = receive('hello', (data) => {
   console.log(data)
 
-  // 可调用 off 停止接受广播
+  // 可调用 off 停止接收广播
   off()
 })
-// 只接受一次
+// 只接收一次
 receive('hello', (data) => {}, { once: true })
 // 排除当前组件实例发出的广播
 receive('hello', (data) => {}, { excludeSelf: true })
@@ -167,14 +167,14 @@ receive('hello', (data) => {}, { excludeSelf: true })
 ```ts
 import { useGlobalReceiveBroadcast, useGlobalChildBroadcast } from 'vue-broadcaster'
 
-// 接受广播
+// 接收广播
 const off = useGlobalReceiveBroadcast('hello', (data) => {
   console.log(data)
 
-  // 可调用 off 停止接受广播
+  // 可调用 off 停止接收广播
   off()
 })
-// 只接受一次
+// 只接收一次
 useGlobalReceiveBroadcast('hello', (data) => {}, { once: true })
 // 排除当前组件实例发出的广播
 useGlobalReceiveBroadcast('hello', (data) => {}, { excludeSelf: true })
