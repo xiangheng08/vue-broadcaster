@@ -31,13 +31,7 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
     // 提供广播器给子组件
     provide(injectionKey, broadcaster)
 
-    // 创建一个 offs 数组，用于存储移除监听器的函数
-    const offs: Array<() => void> = []
-
-    onUnmounted(() => {
-      // 组件卸载时移除所有监听器
-      offs.forEach((fn) => fn())
-    })
+    onUnmounted(() => broadcaster.clear())
 
     // 广播函数
     const broadcast: Broadcast = (type, data) => {
@@ -52,7 +46,6 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
         uidWarning()
       }
 
-      offs.push(() => broadcaster.off(type, handler))
       return broadcaster.on(type, handler, once, excludeSelf, uid)
     }
 

@@ -81,4 +81,8 @@ export class Broadcaster {
       }
     })
   }
+
+  clear() {
+    this.listeners.clear()
+  }
 }
