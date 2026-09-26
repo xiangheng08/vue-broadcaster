@@ -101,6 +101,8 @@ const { broadcast, receive } = useBroadcast()
 broadcast('hello')
 // With data
 broadcast('hello', { name: 'world' })
+// With multiple arguments
+broadcast('hello', 'world', 123)
 
 // Receive broadcast
 const off = receive('hello', (data) => {
@@ -138,6 +140,8 @@ const broadcast = useChildBroadcast()
 broadcast('hello')
 // With data
 broadcast('hello', { name: 'world' })
+// With multiple arguments
+broadcast('hello', 'world', 123)
 ```
 
 ### `useGlobalBroadcast`, `useGlobalReceiveBroadcast`, `useGlobalChildBroadcast`
@@ -158,6 +162,8 @@ const { broadcast, receive } = useGlobalBroadcast()
 broadcast('hello')
 // With data
 broadcast('hello', { name: 'world' })
+// With multiple arguments
+broadcast('hello', 'world', 123)
 
 // Receive broadcast
 const off = receive('hello', (data) => {
@@ -196,6 +202,8 @@ const broadcast = useGlobalChildBroadcast()
 broadcast('hello')
 // With data
 broadcast('hello', { name: 'world' })
+// With multiple arguments
+broadcast('hello', 'world', 123)
 ```
 
 ### `createBroadcastCompositions`

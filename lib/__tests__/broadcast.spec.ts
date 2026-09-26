@@ -69,6 +69,29 @@ describe('Broadcast functionality', () => {
     // 验证根组件接收到了广播
     expect(wrapper.vm.received).toContain(DATA)
   })
+
+  it('should receive broadcast events with multiple arguments', async () => {
+    const received: any[][] = []
+    const TestComponent = defineComponent({
+      template: '<div><slot /></div>',
+      setup() {
+        const { broadcast, receive } = useBroadcast()
+        receive('multi-args', (...args: unknown[]) => {
+          received.push(args)
+        })
+        return { broadcast }
+      },
+    })
+
+    const wrapper = mount(TestComponent)
+
+    // 发送携带多个参数的广播
+    wrapper.vm.broadcast('multi-args', 'a', 1, { b: true })
+    await nextTick()
+
+    // 验证处理函数接收到了全部参数
+    expect(received).toEqual([['a', 1, { b: true }]])
+  })
 })
 
 describe('Child broadcast functionality', () => {

@@ -98,6 +98,8 @@ const { broadcast, receive } = useBroadcast()
 broadcast('hello')
 // 携带数据
 broadcast('hello', { name: 'world' })
+// 携带多个参数
+broadcast('hello', 'world', 123)
 
 // 接收广播
 const off = receive('hello', (data) => {
@@ -135,6 +137,8 @@ const broadcast = useChildBroadcast()
 broadcast('hello')
 // 携带数据
 broadcast('hello', { name: 'world' })
+// 携带多个参数
+broadcast('hello', 'world', 123)
 ```
 
 ### `useGlobalBroadcast`、`useGlobalReceiveBroadcast`、`useGlobalChildBroadcast`
@@ -155,6 +159,8 @@ const { broadcast, receive } = useGlobalBroadcast()
 broadcast('hello')
 // 携带数据
 broadcast('hello', { name: 'world' })
+// 携带多个参数
+broadcast('hello', 'world', 123)
 
 // 接收广播
 const off = receive('hello', (data) => {

@@ -21,7 +21,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, false, undefined)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证处理函数被正确调用
       expect(handler).toHaveBeenCalledWith('test data')
@@ -35,7 +35,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, false, undefined)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证处理函数只被调用一次
       expect(handler).toHaveBeenCalledTimes(1)
@@ -60,7 +60,7 @@ describe('Broadcaster', () => {
       broadcaster.off('test-event', handler1)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证第一个处理函数未被调用，第二个处理函数被调用
       expect(handler1).not.toHaveBeenCalled()
@@ -76,7 +76,7 @@ describe('Broadcaster', () => {
       broadcaster.off('test-event', handler)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证处理函数未被调用
       expect(handler).not.toHaveBeenCalled()
@@ -98,7 +98,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler2, false, false, undefined)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证两个处理函数都被调用
       expect(handler1).toHaveBeenCalledWith('test data')
@@ -112,10 +112,23 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, false, undefined)
 
       // 触发事件并传递数据
-      broadcaster.emit('test-event', { message: 'hello' })
+      broadcaster.emit('test-event', [{ message: 'hello' }])
 
       // 验证处理函数接收到了正确的数据
       expect(handler).toHaveBeenCalledWith({ message: 'hello' })
+    })
+
+    it('should pass multiple arguments to handlers', () => {
+      // 创建一个处理函数
+      const handler: BroadcastHandler<any> = vi.fn()
+      // 注册处理函数
+      broadcaster.on('test-event', handler, false, false, undefined)
+
+      // 触发事件并传递多个参数
+      broadcaster.emit('test-event', ['first', 2, { message: 'hello' }])
+
+      // 验证处理函数接收到了全部参数
+      expect(handler).toHaveBeenCalledWith('first', 2, { message: 'hello' })
     })
 
     it('should not call handlers for other event types', () => {
@@ -125,7 +138,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, false, undefined)
 
       // 触发其他类型的事件
-      broadcaster.emit('other-event', 'test data')
+      broadcaster.emit('other-event', ['test data'])
 
       // 验证处理函数未被调用
       expect(handler).not.toHaveBeenCalled()
@@ -144,8 +157,8 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, true, false, undefined)
 
       // 多次触发事件
-      broadcaster.emit('test-event', 'first')
-      broadcaster.emit('test-event', 'second')
+      broadcaster.emit('test-event', ['first'])
+      broadcaster.emit('test-event', ['second'])
 
       // 验证处理函数只被调用一次，并且是第一次触发时的数据
       expect(handler).toHaveBeenCalledTimes(1)
@@ -166,7 +179,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, true, uid)
 
       // 使用相同 uid 触发事件
-      broadcaster.emit('test-event', 'test data', uid)
+      broadcaster.emit('test-event', ['test data'], uid)
 
       // 验证处理函数未被调用
       expect(handler).not.toHaveBeenCalled()
@@ -181,7 +194,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, true, listenerUid)
 
       // 使用不同 uid 触发事件
-      broadcaster.emit('test-event', 'test data', emitterUid)
+      broadcaster.emit('test-event', ['test data'], emitterUid)
 
       // 验证处理函数被调用
       expect(handler).toHaveBeenCalledWith('test data')
@@ -195,7 +208,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', handler, false, false, uid)
 
       // 使用相同 uid 触发事件
-      broadcaster.emit('test-event', 'test data', uid)
+      broadcaster.emit('test-event', ['test data'], uid)
 
       // 验证处理函数被调用
       expect(handler).toHaveBeenCalledWith('test data')
@@ -220,7 +233,7 @@ describe('Broadcaster', () => {
       broadcaster.on('test-event', normalHandler, false, false, undefined)
 
       // 触发事件
-      broadcaster.emit('test-event', 'test data')
+      broadcaster.emit('test-event', ['test data'])
 
       // 验证正常处理函数仍被调用
       expect(normalHandler).toHaveBeenCalledWith('test data')

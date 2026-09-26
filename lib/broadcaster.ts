@@ -4,7 +4,7 @@ import type { BroadcastHandler } from './types'
  * 监听器组成
  */
 export interface ListenerMaterial {
-  handler: BroadcastHandler<any>
+  handler: BroadcastHandler<any[]>
   once?: boolean
   excludeSelf?: boolean
   uid?: number | undefined
@@ -18,7 +18,7 @@ export class Broadcaster {
 
   on(
     type: string,
-    handler: BroadcastHandler<any>,
+    handler: BroadcastHandler<any[]>,
     once: boolean,
     excludeSelf: boolean,
     uid: number | undefined,
@@ -42,7 +42,7 @@ export class Broadcaster {
     return () => this.off(type, handler)
   }
 
-  off(type: string, handler: BroadcastHandler<any>) {
+  off(type: string, handler: BroadcastHandler<any[]>) {
     const materials = this.listeners.get(type)
     if (!materials) return
 
@@ -56,7 +56,7 @@ export class Broadcaster {
     }
   }
 
-  emit(type: string, data: unknown, uid?: number) {
+  emit(type: string, args: unknown[], uid?: number) {
     const materials = this.listeners.get(type)
     if (!materials) return
 
@@ -72,7 +72,7 @@ export class Broadcaster {
           // 忽略来自当前组件实例的广播
           return
         }
-        material.handler(data)
+        material.handler(...args)
       } catch (error) {
         console.error(`Error handling broadcast event "${type}":`, error)
       }

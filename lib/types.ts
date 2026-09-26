@@ -1,12 +1,14 @@
 /**
  * 广播处理函数
+ *
+ * 泛型参数可以是单个数据类型，也可以是参数元组（如 `[string, number]`）。
  */
-export type BroadcastHandler<T = unknown> = (data: T) => void
+export type BroadcastHandler<T = unknown> = (...args: T extends unknown[] ? T : [T]) => void
 
 /**
  * 广播函数
  */
-export type Broadcast = (type: string, data?: unknown) => void
+export type Broadcast = (type: string, ...args: unknown[]) => void
 
 /**
  * 接收广播函数

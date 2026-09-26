@@ -34,8 +34,8 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
     onUnmounted(() => broadcaster.clear())
 
     // 广播函数
-    const broadcast: Broadcast = (type, data) => {
-      return broadcaster.emit(type, data, uid)
+    const broadcast: Broadcast = (type, ...args) => {
+      return broadcaster.emit(type, args, uid)
     }
 
     // 接收广播函数
@@ -93,9 +93,9 @@ export const createBroadcastCompositions = (options?: BroadcastCompositionsOptio
       console.warn(`No broadcast provider found`)
     }
 
-    const childBroadcast = (type: string, data?: unknown) => {
+    const childBroadcast: Broadcast = (type, ...args) => {
       if (!broadcast) return
-      broadcast.emit(type, data, uid)
+      broadcast.emit(type, args, uid)
     }
 
     return childBroadcast
